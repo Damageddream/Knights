@@ -56,8 +56,14 @@ knowledge3 = And(
     Or(BKnave, BKnight),
     Not(And(CKnight, CKnave)),
     Or(CKnave, CKnight),
-    Or(Implication(AKnight, AKnight), Implication(AKnight, AKnave)),
-    Or(Implication(AKnave, Not(AKnight)), Implication(AKnave, Not(AKnave))),
+    Implication(AKnight, Or(AKnight, AKnave)),
+    Implication(AKnight, Not(Or(AKnight, AKnave))),
+    Implication(BKnight, CKnave),
+    Implication(BKnave, Not(CKnave)),
+    Implication(CKnight, AKnight),
+    Implication(CKnave, Not(AKnight)),
+
+
     Implication(
         BKnight, Or(Implication(AKnight, AKnave), Implication(AKnave, Not(AKnave)))
     ),
@@ -65,13 +71,8 @@ knowledge3 = And(
         BKnave,
         Or(Not(Implication(AKnight, AKnave)), Not(Implication(AKnave, Not(AKnave)))),
     ),
-    Implication(BKnight, CKnave),
-    Implication(BKnave, Not(CKnave)),
-    Implication(CKnight, AKnight),
-    Implication(CKnave, Not(AKnight)),
-)
 
-print(knowledge0.formula())
+)
 
 
 def main():
